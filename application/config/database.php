@@ -74,12 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'pgsql',
+	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'gilmarinoj',
-	'password' => '123456',
+	'username' => 'postgres',
+	'password' => 'root',
 	'database' => 'newspaper',
-	'dbdriver' => 'postgresql',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

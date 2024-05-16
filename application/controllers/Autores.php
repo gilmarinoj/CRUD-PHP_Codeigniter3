@@ -6,12 +6,15 @@ class Autores extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('authors_model');
 	}
-	public function autores()
+	public function index()
 	{	
+		$autores = $this->authors_model->getAuthors();
+
 		$this->load->view('dashboard/base/header');
-		$this->load->view('dashboard/base/menu', array('current_page' => 'autores') );
-		$this->load->view('dashboard/autores/autores');
+		$this->load->view('dashboard/base/menu', array('current_page' => 'autores'));
+		$this->load->view('dashboard/autores/autores', array('autores' => $autores));
 		$this->load->view('dashboard/base/footer');
 	}
 }
