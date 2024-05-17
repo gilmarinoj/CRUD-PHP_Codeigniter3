@@ -21,7 +21,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripcion</th>
-                        <th scope="col">Articulos</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,12 @@
                                 <th scope="row"><?php echo $categoria['id']; ?></th>
                                 <td><?php echo $categoria['name']; ?></td>
                                 <td><?php echo $categoria['description']; ?></td>
-                                <td></td>
+                                <td>
+                                    <form action="<?php echo base_url('api/eliminar_categorias'); ?>" method="post" class="d-inline" id="eliminarcategoria"> 
+                                        <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
+                                        <button type="submit" class="btn btn-secondary btn-sm btn btn-danger">Eliminar</button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php } ?>
                     <?php } ?>

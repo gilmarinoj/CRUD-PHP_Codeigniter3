@@ -33,7 +33,12 @@
                                     <td><?php echo $autor['name']; ?></td>
                                     <td><?php echo $autor['email']; ?></td>
                                     <td></td>
-                                    <td></td>
+                                    <td>
+                                    <form action="<?php echo base_url('api/eliminar_autores'); ?>" method="post" class="d-inline" id="eliminarautor"> 
+                                        <input type="hidden" name="id" value="<?php echo $autor['id']; ?>">
+                                        <button type="submit" class="btn btn-secondary btn-sm btn btn-danger">Eliminar</button>
+                                    </form>
+                                </td>
                                 </tr>
                             <?php } ?>
                         <?php } ?>

@@ -69,4 +69,105 @@ class Api extends CI_Controller {
 			redirect("categorias");
 		}
 	}
+	public function agregar_articulos()
+	{
+		$titulo = $this->input->post('titulo', true);
+		$fecha_publicacion = $this->input->post('fecha_publicacion', true);
+		$contenido = $this->input->post('contenido', true);
+		$autor_id = $this->input->post('autor_id', true);
+		$categoria_id = $this->input->post('categoria_id', true);
+
+		if(empty($titulo)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El título es obligatorio!</div>');
+			redirect("articulos");
+		}
+
+		if(empty($fecha_publicacion)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">La fecha de publicación es obligatoria!</div>');
+			redirect("articulos");
+		}
+
+		if(empty($contenido)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El contenido es obligatorio!</div>');
+			redirect("articulos");
+		}
+
+		if(empty($autor_id)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El autor es obligatorio!</div>');
+			redirect("articulos");
+		}
+
+		if(empty($categoria_id)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">La categoría es obligatoria!</div>');
+			redirect("articulos");
+		}
+
+		if(!$this->api_model->verificar_autor($autor_id)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El autor no existe!</div>');
+			redirect("articulos");
+		}
+		if(!$this->api_model->verificar_categoria($categoria_id)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">La categoria no existe!</div>');
+			redirect("articulos");
+		}
+
+		if($this->api_model->guardar_nuevo_articulo($titulo, $fecha_publicacion, $contenido, $autor_id, $categoria_id) == true){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-success" role="alert">Articulo agregado correctamente!</div>');
+			redirect("articulos");
+		}else{
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El Articulo no fue agregado!</div>');
+			redirect("articulos");
+		}
+	}
+	public function eliminar_articulos()
+	{
+		$id = $this->input->post('id', true);
+
+		if(empty($id)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El ID es obligatorio!</div>');
+			redirect("articulos");
+		}
+
+		if($this->api_model->eliminarArticulo($id) == true){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-success" role="alert">Articulo eliminado correctamente!</div>');
+			redirect("articulos");
+		}else{
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El Articulo no fue eliminado!</div>');
+			redirect("articulos");
+		}
+	}
+	public function eliminar_categorias()
+	{
+		$id = $this->input->post('id', true);
+
+		if(empty($id)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El ID es obligatorio!</div>');
+			redirect("categorias");
+		}
+
+		if($this->api_model->eliminarCategorias($id) == true){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-success" role="alert">Categoría eliminada correctamente!</div>');
+			redirect("categorias");
+		}else{
+		$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">La categoría no fue eliminada!</div>');
+		redirect("categorias");
+		}
+	}
+	public function eliminar_autores()
+	{
+		$id = $this->input->post('id', true);
+
+		if(empty($id)){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El ID es obligatorio!</div>');
+			redirect("autores");
+		}
+
+		if($this->api_model->eliminarAutor($id) == true){
+			$this->session->set_flashdata('msg_formulario', '<div class="alert alert-success" role="alert">Autor eliminado correctamente!</div>');
+			redirect("autores");
+		}else{
+		$this->session->set_flashdata('msg_formulario', '<div class="alert alert-danger" role="alert">El autor no fue eliminado!</div>');
+		redirect("autores");
+		}
+	}
 }
