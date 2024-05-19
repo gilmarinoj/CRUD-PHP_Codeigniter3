@@ -21,7 +21,6 @@
                             <th scope="col">#</th>
                             <th scope="col">Titulo</th>
                             <th scope="col">Fecha Publicacion</th>
-                            <th scope="col">Contenido</th>
                             <th scope="col">Autor</th>
                             <th scope="col">Categoria</th>
                             <th scope="col">Acciones</th>
@@ -34,16 +33,16 @@
                                     <th scope="row"><?php echo $articulo['id']; ?></th>
                                     <td><?php echo $articulo['title']; ?></td>
                                     <td><?php echo $articulo['date_publication']; ?></td>
-                                    <td><?php echo $articulo['content']; ?></td>
                                     <td><?php echo $articulo['authorname']; ?></td>
                                     <td><?php echo $articulo['categoryname']; ?></td>
                                     <td>
                                         <form action="<?php echo base_url('api/eliminar_articulos'); ?>" method="post" class="d-inline" id="eliminararticulo"> 
                                             <input type="hidden" name="id" value="<?php echo $articulo['id']; ?>">
-                                            <button type="submit" class="btn btn-secondary btn-sm btn btn-danger">Eliminar</button>
+                                            <button type="submit" class="btn btn-secondary btn-sm btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                         </form>
+                                            <a href="<?php echo base_url('articulos/edit/'.$articulo['id']); ?>" class="btn btn-secondary btn-sm btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="<?php echo base_url('articulos/view/'.$articulo['id']); ?>" class="btn btn-secondary btn-sm btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                     </td>
-
                                 </tr>
                             <?php } ?>
                         <?php } ?>
@@ -58,7 +57,7 @@
 <div class="modal fade" id="ModalAgregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="<?php echo base_url('api/agregar_articulos'); ?>" method="post">
+            <form action="<?php echo base_url('api/agregar_articulos'); ?>" method="post" id="formularioarticulo">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Articulo</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -74,7 +73,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="contenido" class="form-label">Contenido</label>
-                        <textarea class="form-control" id="contenido" name="contenido" rows="3" placeholder="Contenido" required></textarea>
+                        <div id="contenido"></div>
                     </div>
                     <div class="mb-3">
                         <label for="categoria_id" class="form-label">Categoria</label>
@@ -101,6 +100,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Añadir</button>
                 </div>
+                <input type="hidden" name="contenido" id="contenidodiv">
             </form>
         </div>
     </div>

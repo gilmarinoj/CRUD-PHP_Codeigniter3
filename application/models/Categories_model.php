@@ -11,5 +11,14 @@ class Categories_model extends CI_Model {
     {
         return $this->db->get_where('categories', array('is_deleted' => false))->result_array();
     }
+
+    public function getCategoryId($id = null)
+    {
+        if($id == null){
+            return false;
+        }
+        
+        return $this->db->get_where('categories', array('is_deleted' => false, 'id' => $id))->row_array();
+    }
 }
 

@@ -34,8 +34,9 @@
                                 <td>
                                     <form action="<?php echo base_url('api/eliminar_categorias'); ?>" method="post" class="d-inline" id="eliminarcategoria"> 
                                         <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
-                                        <button type="submit" class="btn btn-secondary btn-sm btn btn-danger">Eliminar</button>
+                                        <button type="submit" class="btn btn-secondary btn-sm btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                     </form>
+                                    <a href="<?php echo base_url('categorias/edit/'.$categoria['id']); ?>" class="btn btn-secondary btn-sm btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

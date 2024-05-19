@@ -11,5 +11,14 @@ class Authors_model extends CI_Model {
     {
         return $this->db->get_where('authors', array('is_deleted' => false))->result_array();
     }
+
+    public function getAuthorId($id = null)
+    {
+        if($id == null){
+            return false;
+        }
+
+        return $this->db->get_where('authors', array('id' => $id, 'is_deleted' => false))->row_array();
+    }
 }
 

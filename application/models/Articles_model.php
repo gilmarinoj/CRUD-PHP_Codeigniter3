@@ -16,13 +16,25 @@ class Articles_model extends CI_Model {
         $this->db->where('a.is_deleted', false);
         return $this->db->get()->result_array();
     }
+
     public function getCategories()
     {
         return $this->db->get_where('categories', array('is_deleted' => false))->result_array();
     }
+
     public function getAuthors()
     {
         return $this->db->get_where('authors', array('is_deleted' => false))->result_array();
     }
+    
+    public function getArticleId($id = null)
+    {
+        if($id == null){
+            return false;
+        }
+
+        return $this->db->get_where('articles', array('is_deleted' => false, 'id' => $id))->row_array();
+    }
+
 }
 

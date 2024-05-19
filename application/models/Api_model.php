@@ -79,5 +79,31 @@ class Api_model extends CI_Model {
         
         return $this->db->update('authors', ['is_deleted' => true], ['id' => $id]);
     }
+    public function actualizar_articulo($id = null, $titulo = null, $contenido = null, $autor_id = null,  $categoria_id = null)
+    {
+        if($id == null || $titulo == null || $contenido == null || $categoria_id == null || $autor_id == null){
+            return false;
+        }
+
+        return $this->db->update('articles', ['title' => $titulo, 'content' => $contenido, 'author_id' => $autor_id, 'category_id' => $categoria_id], array('id' => $id));     
+    }
+    public function actualizar_categoria($id = null, $nombre = null, $descripcion = null)
+    {
+        if($id == null || $nombre == null || $descripcion == null){
+            return false;
+        }
+
+        return $this->db->update('categories', ['name' => $nombre, 'description' => $descripcion], array('id' => $id));
+    }
+
+    public function actualizar_autor($id = null, $nombre = null, $email = null, $biografia = null)
+    {
+        if($id == null || $nombre == null || $email == null || $biografia == null){
+            return false;
+        }
+
+        return $this->db->update('authors', ['name' => $nombre, 'email' => $email, 'biography' => $biografia], array('id' => $id));
+    }
+
 }
 

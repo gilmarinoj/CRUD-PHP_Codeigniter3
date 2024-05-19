@@ -36,8 +36,9 @@
                                     <td>
                                     <form action="<?php echo base_url('api/eliminar_autores'); ?>" method="post" class="d-inline" id="eliminarautor"> 
                                         <input type="hidden" name="id" value="<?php echo $autor['id']; ?>">
-                                        <button type="submit" class="btn btn-secondary btn-sm btn btn-danger">Eliminar</button>
+                                        <button type="submit" class="btn btn-secondary btn-sm btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                     </form>
+                                    <a href="<?php echo base_url('autores/edit/'.$autor['id']); ?>" class="btn btn-secondary btn-sm btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                                 </tr>
                             <?php } ?>
