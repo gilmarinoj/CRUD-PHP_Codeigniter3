@@ -7,8 +7,12 @@ class Articles_model extends CI_Model {
     {
         parent::__construct();
     }
-    public function getArticles()
+    public function getArticles($search = null)
     {   
+        if($search){
+            $this->db->where('a.id', $search);
+        }
+
         $this->db->select('a.id, a.title, a.date_publication, a.content, au.name authorname, ca.name categoryname');
         $this->db->from('articles a');
         $this->db->join('authors au', 'a.author_id = au.id', 'inner');

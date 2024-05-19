@@ -11,7 +11,8 @@ class Articulos extends CI_Controller {
 
 	public function index()
 	{	
-		$articulos = $this->articles_model->getArticles();
+		$search = $this->input->get('search', true);
+		$articulos = $this->articles_model->getArticles($search);
 		$autores = $this->articles_model->getAuthors();
 		$categorias = $this->articles_model->getCategories();
 		

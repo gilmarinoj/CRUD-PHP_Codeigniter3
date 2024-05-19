@@ -4,7 +4,10 @@
             <h1>Articulos</h1>
         </div>
         <div class="col-12 col-md-6">
-            <div class="float-end">
+            <div class="float-end d-flex ">
+                <form type="get" class="me-2" action="<?php echo base_url('articulos'); ?>">
+                    <input value="<?php echo ($this->input->get('search')) ? $this->input->get('search') : ''; ?>" type="text" class="form-control" name="search" id="search" placeholder="Buscar">
+                </form>
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalAgregar">Agregar</button>
             </div>
         </div>
@@ -36,12 +39,12 @@
                                     <td><?php echo $articulo['authorname']; ?></td>
                                     <td><?php echo $articulo['categoryname']; ?></td>
                                     <td>
-                                        <form action="<?php echo base_url('api/eliminar_articulos'); ?>" method="post" class="d-inline" id="eliminararticulo"> 
+                                        <form action="<?php echo base_url('api/eliminar_articulos'); ?>" method="post" class="d-inline" id="eliminararticulo">
                                             <input type="hidden" name="id" value="<?php echo $articulo['id']; ?>">
                                             <button type="submit" class="btn btn-secondary btn-sm btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                                         </form>
-                                            <a href="<?php echo base_url('articulos/edit/'.$articulo['id']); ?>" class="btn btn-secondary btn-sm btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a href="<?php echo base_url('articulos/view/'.$articulo['id']); ?>" class="btn btn-secondary btn-sm btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="<?php echo base_url('articulos/edit/' . $articulo['id']); ?>" class="btn btn-secondary btn-sm btn btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="<?php echo base_url('articulos/view/' . $articulo['id']); ?>" class="btn btn-secondary btn-sm btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -77,12 +80,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="categoria_id" class="form-label">Categoria</label>
-                        <select class="form-select" id="categoria_id" name="categoria_id" required >
+                        <select class="form-select" id="categoria_id" name="categoria_id" required>
                             <?php if (is_array($categorias) && count($categorias) > 0) {  ?>
                                 <?php foreach ($categorias as $categoria) { ?>
                                     <option value="<?php echo $categoria['id'] ?>"><?php echo $categoria['name']; ?></option>
-                                <?php }?>
-                            <?php }?>
+                                <?php } ?>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -91,8 +94,8 @@
                             <?php if (is_array($autores) && count($autores) > 0) {  ?>
                                 <?php foreach ($autores as $autor) { ?>
                                     <option value="<?php echo $autor['id'] ?>"><?php echo $autor['name']; ?></option>
-                                <?php }?>
-                            <?php }?>
+                                <?php } ?>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -105,4 +108,3 @@
         </div>
     </div>
 </div>
-

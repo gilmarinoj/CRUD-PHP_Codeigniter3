@@ -24,7 +24,7 @@ class Autores extends CI_Controller {
 			redirect('autores');
 		}
 
-		$autorId = $this->authors_model->getAuthorId();
+		$autorId = $this->authors_model->getAuthorId($id);
 
 		if(!$autorId){
 			redirect('autores');
